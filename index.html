@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>예산정책담당관실 바로가기</title>
+  <link rel="icon" href="mark.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    body {
+      font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+      background: radial-gradient(circle at top, #f2f8ff 0%, #e9f0fb 40%, #edf5ff 100%);
+      color: #20304d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+    .container {
+      width: min(1024px, 100%);
+      max-width: 1024px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.98);
+      border-radius: 28px;
+      box-shadow: 0 30px 70px rgba(37, 68, 121, 0.12);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.8);
+    }
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 0;
+      margin-left: -30px;
+      margin-right: -30px;
+      margin-top: -30px;
+      padding: 12px 30px;
+      border-bottom: 1px solid rgba(32, 48, 77, 0.08);
+      background: rgba(112, 130, 156, 0.07);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .brand-logo {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      border-radius: 0;
+      background: transparent;
+      padding: 0;
+      box-shadow: none;
+    }
+    .brand-right .brand-logo {
+      width: 130px;
+      height: 130px;
+      object-fit: contain;
+      display: block;
+    }
+    .brand-text {
+      font-family: 'Noto Serif KR', 'Times New Roman', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #1e2f4f;
+      white-space: nowrap;
+      letter-spacing: -0.03em;
+    }
+    .links {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .link-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 14px;
+      min-height: 108px;
+      padding: 22px 24px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, #ffffff 0%, #f4f8ff 100%);
+      border: 1px solid rgba(26, 60, 116, 0.12);
+      text-decoration: none;
+      color: #1a2d48;
+      transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease, background-color 0.24s ease;
+    }
+    .link-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(26, 60, 116, 0.22);
+      box-shadow: 0 22px 42px rgba(24, 64, 126, 0.12);
+      background: linear-gradient(180deg, #eef3ff 0%, #dce8ff 100%);
+      color: #10264c;
+    }
+    .link-card:hover .link-card__icon {
+      background: #dbe6ff;
+      color: #0f2f6d;
+    }
+    .link-card__title {
+      margin: 0;
+      font-size: 1.08rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .link-card__note {
+      margin: 8px 0 0;
+      color: #546983;
+      font-size: 0.94rem;
+      line-height: 1.6;
+    }
+    .link-card__icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 46px;
+      height: 46px;
+      border-radius: 16px;
+      background: #eef5ff;
+      color: #1c3b75;
+      font-size: 1.2rem;
+      box-shadow: inset 0 0 0 1px rgba(28, 64, 121, 0.08);
+    }
+    .link-card__label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(23, 77, 167, 0.07);
+      color: #174f9e;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-top: 10px;
+      width: fit-content;
+    }
+    .page-footer {
+      margin-top: 28px;
+      margin-left: -30px;
+      margin-right: -30px;
+      margin-bottom: -30px;
+      padding: 22px 30px;
+      border-top: 1px solid rgba(32, 48, 77, 0.08);
+      background: rgba(112, 130, 156, 0.07);
+      color: rgba(77, 101, 135, 0.72);
+      font-size: 0.82rem;
+      line-height: 1.6;
+      text-align: center;
+    }
+    .page-footer strong {
+      color: rgba(77, 101, 135, 0.72);
+      font-weight: 500;
+    }
+    .page-footer span {
+      display: block;
+      margin-top: 6px;
+    }
+    .quick-links {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      margin-left: -30px;
+      margin-right: -30px;
+      margin-top: 0;
+      padding: 16px 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+      background: #ffffff;
+      border-bottom: 1px solid rgba(32, 48, 77, 0.08);
+    }
+    .quick-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: rgba(26, 60, 116, 0.06);
+      border: 1px solid rgba(26, 60, 116, 0.12);
+      border-radius: 12px;
+      text-decoration: none;
+      color: #1a3c75;
+      font-size: 0.89rem;
+      font-weight: 500;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+    .quick-link img,
+    .quick-link span {
+      display: inline-flex;
+      align-items: center;
+    }
+    .quick-link img {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+    }
+    .quick-link span {
+      font-size: 1.1rem;
+    }
+    .quick-link:hover {
+      background: rgba(26, 60, 116, 0.12);
+      border-color: rgba(26, 60, 116, 0.22);
+    }
+    .quick-link,
+    .link-card {
+      cursor: pointer;
+    }
+    @media (max-width: 900px) {
+      .links {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 660px) {
+      .page-header {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        text-align: center;
+      }
+      .brand,
+      .brand-right {
+        justify-content: center;
+      }
+      .container {
+        padding: 24px;
+      }
+      .title-wrap h1 {
+        font-size: 1.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="page-header">
+      <div class="brand">
+        <img src="mark.png" alt="Mark" class="brand-logo">
+        <span class="brand-text">충청남도의회 예산정책담당관</span>
+      </div>
+      <div class="brand-right">
+        <img src="logo.png" alt="Logo" class="brand-logo">
+      </div>
+    </header>
+    <div class="quick-links">
+      <a href="http://108.0.1.20/sso/Login/Portal/SSOLogin.jsp" target="_blank" rel="noopener noreferrer" class="quick-link">
+        <img src="clogo.png" alt="행정포털">
+        <span>행정포털바로가기</span>
+      </a>
+      <a href="https://council.chungnam.go.kr/" onclick="window.open(this.href, '_blank', 'width=1024,height=768'); return false;" class="quick-link">
+        <img src="mark.png" alt="의회홈페이지">
+        <span>의회홈페이지 바로가기</span>
+      </a>
+      <a href="https://mail.korea.kr/" onclick="window.open(this.href, '_blank', 'width=1024,height=768'); return false;" class="quick-link">
+        <span>✉️</span>
+        <span>공직자메일바로가기</span>
+      </a>
+    </div>
+    <div class="links">
+      <a class="link-card" href="http://115.137.55.154:15150/" onclick="window.open(this.href, '_blank', 'width=1024,height=768'); return false;">
+        <div>
+          <p class="link-card__title">AI 의정브레인</p>
+          <p class="link-card__note">행정 업무를 돕는 AI 브레인 서비스입니다.</p>
+        </div>
+        <span class="link-card__icon">🧠</span>
+      </a>
+      <a class="link-card" href="http://121.185.136.195:3000/" onclick="window.open(this.href, '_blank', 'width=1024,height=768'); return false;">
+        <div>
+          <p class="link-card__title">AI 의정브레인 챗봇</p>
+          <p class="link-card__note">대화형 챗봇으로 빠르게 질문하세요.</p>
+        </div>
+        <span class="link-card__icon">💬</span>
+      </a>
+      <a class="link-card" href="http://121.185.136.195:8080/" onclick="window.open(this.href, '_blank', 'width=1024,height=768'); return false;">
+        <div>
+          <p class="link-card__title">예산담당관실 노트</p>
+          <p class="link-card__note">업무 메모와 협업 자료를 관리합니다.</p>
+        </div>
+        <span class="link-card__icon">📝</span>
+      </a>
+      <a class="link-card" href="https://choseongho11.github.io/council13th/" onclick="window.open(this.href, '_blank', 'width=1024,height=768'); return false;">
+        <div>
+          <p class="link-card__title">의정활동이력카드</p>
+          <p class="link-card__note">의정 활동 이력을 카드 형식으로 확인하세요.</p>
+        </div>
+        <span class="link-card__icon">📇</span>
+      </a>
+      <a class="link-card" href="http://121.185.136.195:8082/" onclick="window.open(this.href, '_blank', 'width=1024,height=768'); return false;">
+        <div>
+          <p class="link-card__title">AI 비용추계시스템</p>
+          <p class="link-card__note">예산 비용 추계를 빠르게 진행합니다.</p>
+        </div>
+        <span class="link-card__icon">📈</span>
+      </a>
+      <a class="link-card" href="http://115.137.55.154/" onclick="window.open(this.href, '_blank', 'width=1024,height=768'); return false;">
+        <div>
+          <p class="link-card__title">온라인예산정책이슈</p>
+          <p class="link-card__note">정책 이슈와 예산 정보를 확인합니다.</p>
+        </div>
+        <span class="link-card__icon">🌐</span>
+      </a>
+    </div>
+    <footer class="page-footer">
+      <strong>[ 32416 ] 충청남도 예산군 삽교읍 도청대로 600(의회동) TEL. 041) 635-5204 / FAX. 041) 635-5292</strong>
+      <span>COPYRIGHT © 2026 CHUNGCHEONGNAM-DO COUNCIL. ALL RIGHTS RESERVED</span>
+    </footer>
+  </div>
+</body>
+</html>
