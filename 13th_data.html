@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>제13대 충청남도의회 전반기 원구성 현황</title>
+<style>
+  :root {
+    --dem-color: #1a4fd6;
+    --dem-bg: #eaf0ff;
+    --ppp-color: #d6281a;
+    --ppp-bg: #ffeeec;
+    --ink: #1c1f26;
+    --sub: #5b6270;
+    --line: #e3e6ec;
+    --card-bg: #ffffff;
+    --page-bg: #f4f6fb;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    background: var(--page-bg);
+    color: var(--ink);
+    padding: 32px 20px 80px;
+  }
+  .wrap { max-width: 1440px; margin: 0 auto; }
+
+  .title-block {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  .title-block .badge {
+    display: inline-block;
+    background: #ffd400;
+    color: #1c1f26;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  .title-block h1 {
+    font-size: 30px;
+    margin: 4px 0 6px;
+    letter-spacing: -0.5px;
+  }
+  .title-block .date {
+    color: var(--sub);
+    font-size: 14px;
+  }
+
+  .leadership {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 30px;
+  }
+  .leadership .lead-card {
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 16px 18px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(20,30,60,0.04);
+  }
+  .lead-card .role {
+    font-size: 12px;
+    color: var(--sub);
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+  .lead-card .lname {
+    font-size: 20px;
+    font-weight: 800;
+    margin: 6px 0 4px;
+  }
+  .lead-card .ldist {
+    font-size: 13px;
+    color: var(--sub);
+    margin-bottom: 8px;
+  }
+  .lead-card .lcontact {
+    font-size: 12px;
+    color: var(--sub);
+    line-height: 1.6;
+  }
+  .lead-card .lcontact a { color: var(--sub); text-decoration: none; }
+
+  .summary-table-wrap {
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 34px;
+    box-shadow: 0 2px 8px rgba(20,30,60,0.04);
+  }
+  .summary-table-wrap h3 {
+    margin: 0 0 12px;
+    font-size: 15px;
+    color: var(--sub);
+  }
+  table.summary {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  table.summary th, table.summary td {
+    border: 1px solid var(--line);
+    padding: 10px 8px;
+    text-align: center;
+  }
+  table.summary th { background: #f6f8fc; font-weight: 700; }
+  table.summary td.dem { color: var(--dem-color); font-weight: 700; }
+  table.summary td.ppp { color: var(--ppp-color); font-weight: 700; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(640px, 1fr));
+    gap: 20px;
+  }
+
+  .committee-card {
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(20,30,60,0.05);
+  }
+  .committee-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px;
+    background: linear-gradient(90deg, #1c1f26, #33394a);
+    color: #fff;
+  }
+  .committee-header h2 {
+    font-size: 16px;
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+  }
+  .count-badge {
+    font-size: 12px;
+    background: rgba(255,255,255,0.18);
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .table-scroll { overflow-x: auto; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.8px;
+  }
+  thead th {
+    background: #f6f8fc;
+    color: var(--sub);
+    font-weight: 700;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+    white-space: nowrap;
+  }
+  tbody td {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--line);
+    white-space: nowrap;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr.dem { background: #fbfcff; }
+  tbody tr.ppp { background: #fffbfa; }
+  td.name { font-weight: 700; }
+  td.assistant { color: #6d4fd6; font-weight: 600; }
+  td.phone { color: var(--ink); font-variant-numeric: tabular-nums; }
+  td.email a { color: #2b6cf0; text-decoration: none; }
+  td.email a:hover { text-decoration: underline; }
+
+  .pos-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+  .pos-chair { background: #1c1f26; color: #fff; }
+  .pos-vice { background: #5b6270; color: #fff; }
+  .pos-member { background: #eef0f4; color: #5b6270; }
+
+  .party-tag {
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+  .party-tag.dem { background: var(--dem-bg); color: var(--dem-color); }
+  .party-tag.ppp { background: var(--ppp-bg); color: var(--ppp-color); }
+
+  footer {
+    text-align: center;
+    color: var(--sub);
+    font-size: 12px;
+    margin-top: 40px;
+  }
+
+  @media (max-width: 700px) {
+    .leadership { grid-template-columns: 1fr; }
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="title-block">
+    <span class="badge">충청남도의회</span>
+    <h1>제13대 충청남도의회 전반기 원구성 현황</h1>
+    <div class="date">2026. 7. 3. 현재 · 담당정책지원관 · 연락처 포함</div>
+  </div>
+
+  <div class="leadership">
+    <div class="lead-card">
+      <div class="role">의&nbsp;&nbsp;&nbsp;&nbsp;장</div>
+      <div class="lname">조철기</div>
+      <div class="ldist">아산4 · <span class="party-tag dem">더불어민주당</span></div>
+      <div class="lcontact">010-9123-4963<br><a href="mailto:c2321@hanmail.net">c2321@hanmail.net</a></div>
+    </div>
+    <div class="lead-card">
+      <div class="role">제1부의장</div>
+      <div class="lname">장승재</div>
+      <div class="ldist">서산2 · <span class="party-tag dem">더불어민주당</span></div>
+      <div class="lcontact">010-2872-8859<br><a href="mailto:cowman62@naver.com">cowman62@naver.com</a></div>
+    </div>
+    <div class="lead-card">
+      <div class="role">제2부의장</div>
+      <div class="lname">박기영</div>
+      <div class="ldist">공주2 · <span class="party-tag ppp">국민의힘</span></div>
+      <div class="lcontact">010-5402-5583<br><a href="mailto:young5585@hanmail.net">young5585@hanmail.net</a></div>
+    </div>
+  </div>
+
+  <div class="summary-table-wrap">
+    <h3>교섭단체별 의석 현황</h3>
+    <table class="summary">
+      <thead>
+        <tr><th>교섭단체명</th><th>합계</th><th>지역구</th><th>비례대표</th></tr>
+      </thead>
+      <tbody>
+        <tr><td style="font-weight:700;">합&nbsp;&nbsp;계</td><td>50명</td><td>43명</td><td>7명</td></tr>
+        <tr><td class="dem">더불어민주당</td><td class="dem">33명</td><td class="dem">29명</td><td class="dem">4명</td></tr>
+        <tr><td class="ppp">국민의힘</td><td class="ppp">17명</td><td class="ppp">14명</td><td class="ppp">3명</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="grid">
+    
+    <section class="committee-card">
+      <div class="committee-header">
+        <h2>의회운영위원회</h2>
+        <span class="count-badge">정원 11명</span>
+      </div>
+      <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>직위</th><th>성명</th><th>지역구</th><th>소속정당</th><th>담당정책지원관</th><th>연락처</th><th>이메일</th></tr>
+        </thead>
+        <tbody>
+          <tr class="dem">
+      <td><span class="pos-badge pos-chair">위원장</span></td>
+      <td class="name">구형서</td>
+      <td>천안4</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">문나래</td>
+      <td class="phone">010-8434-5010</td>
+      <td class="email"><a href="mailto:8434501@naver.com">8434501@naver.com</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-vice">부위원장</span></td>
+      <td class="name">김선홍</td>
+      <td>천안6</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">엄은주</td>
+      <td class="phone">010-4598-4989</td>
+      <td class="email"><a href="mailto:rtcp224@naver.com">rtcp224@naver.com</a></td>
+    </tr>
+<tr class="ppp">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">홍성현</td>
+      <td>천안1</td>
+      <td><span class="party-tag ppp">국민의힘</span></td>
+      <td class="assistant">이태영</td>
+      <td class="phone">010-5421-0650</td>
+      <td class="email"><a href="mailto:hhak6366@hanmail.net">hhak6366@hanmail.net</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">김영권</td>
+      <td>아산1</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">손영주</td>
+      <td class="phone">010-9461-0120</td>
+      <td class="email"><a href="mailto:ykk3479@naver.com">ykk3479@naver.com</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">김희영</td>
+      <td>아산6</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">두한솔</td>
+      <td class="phone">010-4242-3867</td>
+      <td class="email"><a href="mailto:hy242@naver.com">hy242@naver.com</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">민병희</td>
+      <td>부여1</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">이덕희</td>
+      <td class="phone">010-5404-2974</td>
+      <td class="email"><a href="mailto:mbh2974@naver.com">mbh2974@naver.com</a></td>
+    </tr>
+<tr class="ppp">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">이병훈</td>
+      <td>비례</td>
+      <td><span class="party-tag ppp">국민의힘</span></td>
+      <td class="assistant">선민수</td>
+      <td class="phone">010-3531-2623</td>
+      <td class="email"><a href="mailto:lbh2623@naver.com">lbh2623@naver.com</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">정근수</td>
+      <td>천안10</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">윤상민</td>
+      <td class="phone">010-6485-5285</td>
+      <td class="email"><a href="mailto:minjoocamp21@gmail.com">minjoocamp21@gmail.com</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">진성범</td>
+      <td>천안7</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">김은주</td>
+      <td class="phone">010-5092-5169</td>
+      <td class="email"><a href="mailto:jin2026@kakao.com">jin2026@kakao.com</a></td>
+    </tr>
+<tr class="ppp">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">최경환</td>
+      <td>태안1</td>
+      <td><span class="party-tag ppp">국민의힘</span></td>
+      <td class="assistant">이두현</td>
+      <td class="phone">010-6754-7523</td>
+      <td class="email"><a href="mailto:somang7523@daum.net">somang7523@daum.net</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">최연숙</td>
+      <td>당진2</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">임성춘</td>
+      <td class="phone">010-9485-0140</td>
+      <td class="email"><a href="mailto:jaram3653@naver.com">jaram3653@naver.com</a></td>
+    </tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+    <section class="committee-card">
+      <div class="committee-header">
+        <h2>기획경제위원회</h2>
+        <span class="count-badge">정원 8명</span>
+      </div>
+      <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>직위</th><th>성명</th><th>지역구</th><th>소속정당</th><th>담당정책지원관</th><th>연락처</th><th>이메일</th></tr>
+        </thead>
+        <tbody>
+          <tr class="dem">
+      <td><span class="pos-badge pos-chair">위원장</span></td>
+      <td class="name">정병인</td>
+      <td>천안8</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">김은주</td>
+      <td class="phone">010-4358-3511</td>
+      <td class="email"><a href="mailto:pmjbi@naver.com">pmjbi@naver.com</a></td>
+    </tr>
+<tr class="ppp">
+      <td><span class="pos-badge pos-vice">부위원장</span></td>
+      <td class="name">이병훈</td>
+      <td>비례</td>
+      <td><span class="party-tag ppp">국민의힘</span></td>
+      <td class="assistant">선민수</td>
+      <td class="phone">010-3531-2623</td>
+      <td class="email"><a href="mailto:lbh2623@naver.com">lbh2623@naver.com</a></td>
+    </tr>
+<tr class="ppp">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">이상근</td>
+      <td>홍성1</td>
+      <td><span class="party-tag ppp">국민의힘</span></td>
+      <td class="assistant">김정민</td>
+      <td class="phone">010-9410-8383</td>
+      <td class="email"><a href="mailto:jeilbook@hanmail.net">jeilbook@hanmail.net</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">김아진</td>
+      <td>서천1</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">이종구</td>
+      <td class="phone">010-5334-9746</td>
+      <td class="email"><a href="mailto:ajin75@gmail.com">ajin75@gmail.com</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">김윤섭</td>
+      <td>아산3</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">선민수</td>
+      <td class="phone">010-5439-6759</td>
+      <td class="email"><a href="mailto:covaluekim@naver.com">covaluekim@naver.com</a></td>
+    </tr>
+<tr class="ppp">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">김현이</td>
+      <td>비례</td>
+      <td><span class="party-tag ppp">국민의힘</span></td>
+      <td class="assistant">김정민</td>
+      <td class="phone">010-9041-7566</td>
+      <td class="email"><a href="mailto:nurse9809@hanmail.net">nurse9809@hanmail.net</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">이병하</td>
+      <td>천안2</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">이종구</td>
+      <td class="phone">010-7744-7816</td>
+      <td class="email"><a href="mailto:leebyoungha@naver.com">leebyoungha@naver.com</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">진성범</td>
+      <td>천안7</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">김은주</td>
+      <td class="phone">010-5092-5169</td>
+      <td class="email"><a href="mailto:jin2026@kakao.com">jin2026@kakao.com</a></td>
+    </tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+    <section class="committee-card">
+      <div class="committee-header">
+        <h2>행정문화위원회</h2>
+        <span class="count-badge">정원 8명</span>
+      </div>
+      <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>직위</th><th>성명</th><th>지역구</th><th>소속정당</th><th>담당정책지원관</th><th>연락처</th><th>이메일</th></tr>
+        </thead>
+        <tbody>
+          <tr class="ppp">
+      <td><span class="pos-badge pos-chair">위원장</span></td>
+      <td class="name">김복만</td>
+      <td>금산2</td>
+      <td><span class="party-tag ppp">국민의힘</span></td>
+      <td class="assistant">임성춘</td>
+      <td class="phone">010-4428-7711</td>
+      <td class="email"><a href="mailto:eunchong@korea.kr">eunchong@korea.kr</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-vice">부위원장</span></td>
+      <td class="name">최연숙</td>
+      <td>당진2</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">임성춘</td>
+      <td class="phone">010-9485-0140</td>
+      <td class="email"><a href="mailto:jaram3653@naver.com">jaram3653@naver.com</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">김종욱</td>
+      <td>논산2</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">김창겸</td>
+      <td class="phone">010-5458-2824</td>
+      <td class="email"><a href="mailto:7362824@naver.com">7362824@naver.com</a></td>
+    </tr>
+<tr class="ppp">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">박상선</td>
+      <td>비례</td>
+      <td><span class="party-tag ppp">국민의힘</span></td>
+      <td class="assistant">김창겸</td>
+      <td class="phone">010-7705-0725</td>
+      <td class="email"><a href="mailto:pss7723@naver.com">pss7723@naver.com</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">설미경</td>
+      <td>비례</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">김은주</td>
+      <td class="phone">010-6671-1913</td>
+      <td class="email"><a href="mailto:bright1913@hanmail.net">bright1913@hanmail.net</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">이선</td>
+      <td>비례</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">송미영</td>
+      <td class="phone">010-5593-3960</td>
+      <td class="email"><a href="mailto:leesunlaw@naver.com">leesunlaw@naver.com</a></td>
+    </tr>
+<tr class="ppp">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">최광선</td>
+      <td>예산1</td>
+      <td><span class="party-tag ppp">국민의힘</span></td>
+      <td class="assistant">송미영</td>
+      <td class="phone">010-5422-2004</td>
+      <td class="email"><a href="mailto:cks7117@naver.com">cks7117@naver.com</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">황재만</td>
+      <td>아산2</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">김은주</td>
+      <td class="phone">010-5259-1217</td>
+      <td class="email"><a href="mailto:autoshop2@naver.com">autoshop2@naver.com</a></td>
+    </tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+    <section class="committee-card">
+      <div class="committee-header">
+        <h2>보건복지환경위원회</h2>
+        <span class="count-badge">정원 8명</span>
+      </div>
+      <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>직위</th><th>성명</th><th>지역구</th><th>소속정당</th><th>담당정책지원관</th><th>연락처</th><th>이메일</th></tr>
+        </thead>
+        <tbody>
+          <tr class="dem">
+      <td><span class="pos-badge pos-chair">위원장</span></td>
+      <td class="name">이지윤</td>
+      <td>아산5</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">김은하</td>
+      <td class="phone">010-5199-1008</td>
+      <td class="email"><a href="mailto:with.jyoon@gmail.com">with.jyoon@gmail.com</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-vice">부위원장</span></td>
+      <td class="name">민병희</td>
+      <td>부여1</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">이덕희</td>
+      <td class="phone">010-5404-2974</td>
+      <td class="email"><a href="mailto:mbh2974@naver.com">mbh2974@naver.com</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">홍기후</td>
+      <td>당진3</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">이덕희</td>
+      <td class="phone">010-3400-4763</td>
+      <td class="email"><a href="mailto:gmc22c@hanmail.net">gmc22c@hanmail.net</a></td>
+    </tr>
+<tr class="ppp">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">박기영</td>
+      <td>공주2</td>
+      <td><span class="party-tag ppp">국민의힘</span></td>
+      <td class="assistant">국병호</td>
+      <td class="phone">010-5402-5583</td>
+      <td class="email"><a href="mailto:young5585@hanmail.net">young5585@hanmail.net</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">정병기</td>
+      <td>천안3</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">엄은주</td>
+      <td class="phone">010-3674-3207</td>
+      <td class="email"><a href="mailto:kapiw@naver.com">kapiw@naver.com</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">김선홍</td>
+      <td>천안6</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">엄은주</td>
+      <td class="phone">010-4598-4989</td>
+      <td class="email"><a href="mailto:rtcp224@naver.com">rtcp224@naver.com</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">박유경</td>
+      <td>비례</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">김은하</td>
+      <td class="phone">010-3596-0728</td>
+      <td class="email"><a href="mailto:minjuyk@naver.com">minjuyk@naver.com</a></td>
+    </tr>
+<tr class="ppp">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">최은순</td>
+      <td>보령1</td>
+      <td><span class="party-tag ppp">국민의힘</span></td>
+      <td class="assistant">국병호</td>
+      <td class="phone">010-9930-2805</td>
+      <td class="email"><a href="mailto:soeun5959@hanmail.net">soeun5959@hanmail.net</a></td>
+    </tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+    <section class="committee-card">
+      <div class="committee-header">
+        <h2>농수산해양위원회</h2>
+        <span class="count-badge">정원 8명</span>
+      </div>
+      <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>직위</th><th>성명</th><th>지역구</th><th>소속정당</th><th>담당정책지원관</th><th>연락처</th><th>이메일</th></tr>
+        </thead>
+        <tbody>
+          <tr class="dem">
+      <td><span class="pos-badge pos-chair">위원장</span></td>
+      <td class="name">지정근</td>
+      <td>천안9</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">이두현</td>
+      <td class="phone">010-5422-0377</td>
+      <td class="email"><a href="mailto:jg088@naver.com">jg088@naver.com</a></td>
+    </tr>
+<tr class="ppp">
+      <td><span class="pos-badge pos-vice">부위원장</span></td>
+      <td class="name">최경환</td>
+      <td>태안1</td>
+      <td><span class="party-tag ppp">국민의힘</span></td>
+      <td class="assistant">이두현</td>
+      <td class="phone">010-6754-7523</td>
+      <td class="email"><a href="mailto:somang7523@daum.net">somang7523@daum.net</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">김영권</td>
+      <td>아산1</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">손영주</td>
+      <td class="phone">010-9461-0120</td>
+      <td class="email"><a href="mailto:ykk3479@naver.com">ykk3479@naver.com</a></td>
+    </tr>
+<tr class="ppp">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">김영춘</td>
+      <td>부여2</td>
+      <td><span class="party-tag ppp">국민의힘</span></td>
+      <td class="assistant">손영주</td>
+      <td class="phone">010-7417-8835</td>
+      <td class="email"><a href="mailto:heeyi68@daum.net">heeyi68@daum.net</a></td>
+    </tr>
+<tr class="ppp">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">심우성</td>
+      <td>청양</td>
+      <td><span class="party-tag ppp">국민의힘</span></td>
+      <td class="assistant">이지영</td>
+      <td class="phone">010-2880-4193</td>
+      <td class="email"><a href="mailto:simws03@naver.com">simws03@naver.com</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">김영수</td>
+      <td>서산3</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">이태영</td>
+      <td class="phone">010-2423-3480</td>
+      <td class="email"><a href="mailto:kys88881@naver.com">kys88881@naver.com</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">진성범</td>
+      <td>천안7</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">김은주</td>
+      <td class="phone">010-5092-5169</td>
+      <td class="email"><a href="mailto:jin2026@kakao.com">jin2026@kakao.com</a></td>
+    </tr>
+<tr class="ppp">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">김현이</td>
+      <td>비례</td>
+      <td><span class="party-tag ppp">국민의힘</span></td>
+      <td class="assistant">김정민</td>
+      <td class="phone">010-9041-7566</td>
+      <td class="email"><a href="mailto:nurse9809@hanmail.net">nurse9809@hanmail.net</a></td>
+    </tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+    <section class="committee-card">
+      <div class="committee-header">
+        <h2>건설소방위원회</h2>
+        <span class="count-badge">정원 8명</span>
+      </div>
+      <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>직위</th><th>성명</th><th>지역구</th><th>소속정당</th><th>담당정책지원관</th><th>연락처</th><th>이메일</th></tr>
+        </thead>
+        <tbody>
+          <tr class="ppp">
+      <td><span class="pos-badge pos-chair">위원장</span></td>
+      <td class="name">이철수</td>
+      <td>당진1</td>
+      <td><span class="party-tag ppp">국민의힘</span></td>
+      <td class="assistant">장재석</td>
+      <td class="phone">010-4602-4808</td>
+      <td class="email"><a href="mailto:cheolsoo0905@naver.com">cheolsoo0905@naver.com</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-vice">부위원장</span></td>
+      <td class="name">정근수</td>
+      <td>천안10</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">윤상민</td>
+      <td class="phone">010-6485-5285</td>
+      <td class="email"><a href="mailto:minjoocamp21@gmail.com">minjoocamp21@gmail.com</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">장승재</td>
+      <td>서산2</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">장재석</td>
+      <td class="phone">010-2872-8859</td>
+      <td class="email"><a href="mailto:cowman62@naver.com">cowman62@naver.com</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">박병훈</td>
+      <td>금산1</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">김은미</td>
+      <td class="phone">010-5654-9009</td>
+      <td class="email"><a href="mailto:pbhcamp@naver.com">pbhcamp@naver.com</a></td>
+    </tr>
+<tr class="ppp">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">심우성</td>
+      <td>청양</td>
+      <td><span class="party-tag ppp">국민의힘</span></td>
+      <td class="assistant">이지영</td>
+      <td class="phone">010-2880-4193</td>
+      <td class="email"><a href="mailto:simws03@naver.com">simws03@naver.com</a></td>
+    </tr>
+<tr class="ppp">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">전달수</td>
+      <td>예산2</td>
+      <td><span class="party-tag ppp">국민의힘</span></td>
+      <td class="assistant">이지영</td>
+      <td class="phone">010-6861-2030</td>
+      <td class="email"><a href="mailto:dalsoo625@naver.com">dalsoo625@naver.com</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">유해중</td>
+      <td>서산1</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">윤세라</td>
+      <td class="phone">010-2420-1209</td>
+      <td class="email"><a href="mailto:yhj120414@naver.com">yhj120414@naver.com</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">조동준</td>
+      <td>서천2</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">김은미</td>
+      <td class="phone">010-6417-4981</td>
+      <td class="email"><a href="mailto:sesang4981@hanmail.net">sesang4981@hanmail.net</a></td>
+    </tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+    <section class="committee-card">
+      <div class="committee-header">
+        <h2>교육위원회</h2>
+        <span class="count-badge">정원 9명</span>
+      </div>
+      <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>직위</th><th>성명</th><th>지역구</th><th>소속정당</th><th>담당정책지원관</th><th>연락처</th><th>이메일</th></tr>
+        </thead>
+        <tbody>
+          <tr class="dem">
+      <td><span class="pos-badge pos-chair">위원장</span></td>
+      <td class="name">김은나</td>
+      <td>천안11</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">김은미</td>
+      <td class="phone">010-9408-8165</td>
+      <td class="email"><a href="mailto:kimeunna0305@daum.net">kimeunna0305@daum.net</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-vice">부위원장</span></td>
+      <td class="name">김희영</td>
+      <td>아산6</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">두한솔</td>
+      <td class="phone">010-4242-3867</td>
+      <td class="email"><a href="mailto:hy242@naver.com">hy242@naver.com</a></td>
+    </tr>
+<tr class="ppp">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">홍성현</td>
+      <td>천안1</td>
+      <td><span class="party-tag ppp">국민의힘</span></td>
+      <td class="assistant">이태영</td>
+      <td class="phone">010-5421-0650</td>
+      <td class="email"><a href="mailto:hhak6366@hanmail.net">hhak6366@hanmail.net</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">구형서</td>
+      <td>천안4</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">문나래</td>
+      <td class="phone">010-8434-5010</td>
+      <td class="email"><a href="mailto:8434501@naver.com">8434501@naver.com</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">김영수</td>
+      <td>서산3</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">이태영</td>
+      <td class="phone">010-2423-3480</td>
+      <td class="email"><a href="mailto:kys88881@naver.com">kys88881@naver.com</a></td>
+    </tr>
+<tr class="ppp">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">편삼범</td>
+      <td>보령2</td>
+      <td><span class="party-tag ppp">국민의힘</span></td>
+      <td class="assistant">이윤정</td>
+      <td class="phone">010-6484-0092</td>
+      <td class="email"><a href="mailto:jgdpyeon@hanmail.net">jgdpyeon@hanmail.net</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">기호엽</td>
+      <td>논산1</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">두한솔</td>
+      <td class="phone">010-8206-5878</td>
+      <td class="email"><a href="mailto:keerasung@hanmail.net">keerasung@hanmail.net</a></td>
+    </tr>
+<tr class="ppp">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">노한섭</td>
+      <td>공주1</td>
+      <td><span class="party-tag ppp">국민의힘</span></td>
+      <td class="assistant">이윤정</td>
+      <td class="phone">010-6245-7130</td>
+      <td class="email"><a href="mailto:icon7076@hanmail.net">icon7076@hanmail.net</a></td>
+    </tr>
+<tr class="dem">
+      <td><span class="pos-badge pos-member">위원</span></td>
+      <td class="name">윤재은</td>
+      <td>계룡</td>
+      <td><span class="party-tag dem">더불어민주당</span></td>
+      <td class="assistant">문나래</td>
+      <td class="phone">010-6409-7175</td>
+      <td class="email"><a href="mailto:nanunRachel@gmail.com">nanunRachel@gmail.com</a></td>
+    </tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    본 자료는 제13대 충청남도의회 전반기 원구성 현황표 및 상임위원 선임 명단(담당정책지원관 포함)을 바탕으로 재구성되었습니다. 연락처는 원본 현황표 기준입니다.
+  </footer>
+
+</div>
+</body>
+</html>
